@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>What's Your Game?</title>
+  <style>
+  body{
+    font-family: sans-serif;
+  }
+  .button {
+    background-color: LightPink;
+    border: none;
+    color: Black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  .animal-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 10px 10px 0px #eee;
+    width: 300px;
+    margin: auto;
+  }
+  </style>
+
+</head>
+
+<body align="center">
+
+  <h2>Describe a game you'd like to play</h2>
+
+  <form action="/describe_game/" method="post">
+
+    <div class="animal-card" align="center">
+
+      Your description:
+      <br>
+        <input type="text" name="your_description">
+      <br>
+      
+    </div>
+
+  <br>
+
+  <button type="submit" class="button">
+    Get Games
+  </button>
+  </form>
+  
+  <h2>Enter game index</h2>
+
+  <form action="/similar_game/" method="post">
+
+    <div class="animal-card" align="center">
+
+      Your game index:
+      <br>
+        <input type="text" name="your_index">
+      <br>
+      
+    </div>
+
+  <br>
+
+  <button type="submit" class="button">
+    Get Games
+  </button>
+  </form>
+  
+
+  <br>
+  
+    <div align="center">
+  
+    {% autoescape off %}
+      {% for table in tables %}
+                {{titles[loop.index]}}
+                {{ table|safe }}
+      {% endfor %}
+
+      {% if message %}
+      <h2>{{message}}</h2>
+      {% endif %}
+    {% endautoescape %}  
+    </div>
+
+</body>
+</html>
